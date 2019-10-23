@@ -1,11 +1,13 @@
 import LandingPage from './LandingPage';
-import PeoplePage from './PeoplePage';
-import DoorsPage from './DoorsPage';
 import AccessDoorsPage from './AccessDoorsPage';
+import EventsPage from './EventsPage';
+import ResourcesPage from './ResourcesPage';
+import ManageAccessPage from './ManageAccessPage';
 
 export {
     LandingPage,
-    PeoplePage,
-    DoorsPage,
-    AccessDoorsPage
+    AccessDoorsPage,
+    EventsPage,
+    ResourcesPage,
+    ManageAccessPage
 }

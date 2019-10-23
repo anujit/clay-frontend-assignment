@@ -5,7 +5,7 @@ export default class LandingPage extends React.Component {
     render() {
         return (
             <IsAuthenticated>
-                <div>Landing Page Authenticated!!!</div>
+                <div>Landing Page...</div>
             </IsAuthenticated>
         );
     }
