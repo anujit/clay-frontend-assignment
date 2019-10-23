@@ -1,9 +1,9 @@
 import React from 'react';
-import AccessDoors from '../components/AccessDoors';
+import Resources from '../containers/ResourcesContainer';
 
 export default class AccessDoorsPage extends React.Component {
     render() {
-        return <AccessDoors />;
+        return <Resources type="open-doors" />;
     }
 }
 

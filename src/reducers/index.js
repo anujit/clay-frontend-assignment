@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import user from './user';
-import people from './people';
+import resources from './resources';
+import userInfo from './userInfo';
 
 
 export default combineReducers ({
-    user,
-    people
+    resources,
+    userInfo
 });

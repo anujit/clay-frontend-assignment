@@ -1,6 +1,6 @@
 import axiosInstance from './BaseApi';
 
-export default class AccessPermissionsApi {
+export default class ManageAccessApi {
     constructor() {
         this.axiosInstance = axiosInstance;
     }
@@ -20,10 +20,11 @@ export default class AccessPermissionsApi {
     }
 
     modifyPermission = async ({doorId: id, canOpenDoors}) => {
-        const doorURI = `/doors/${id}`;
+        const doorURI = `/people/${id}`;
         const res = await this.axiosInstance.patch(doorURI, {canOpenDoors});
+        return res.data;
     }
 }
 
-const accessPermissionsApi = new AccessPermissionsApi();
-export {accessPermissionsApi};
+const manageAccessApi = new ManageAccessApi();
+export {manageAccessApi};

@@ -1,9 +1,9 @@
 import React from 'react';
-import ManageAccess from '../components/ManageAccess';
+import Resources from '../containers/ResourcesContainer';
 
 export default class ManageAccessPage extends React.Component {
     render() {
-        return <ManageAccess />
+        return <Resources type="manage-access" />
     }
 }
 

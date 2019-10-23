@@ -1,27 +1,18 @@
 import React from 'react';
 import {resourcesApi} from '../api/ResourcesApi';
-import {accessPermissionsApi} from '../api/AccessPermissionsApi';
+import {manageAccessApi} from '../api/ManageAccessApi';
 
 export default class AccessDoors extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            users: [],
-            doors: [],
-            showNewUserForm: false
-        }
     }
 
     componentDidMount() {
-        resourcesApi.fetchDoors()
-        .then((data) => {
-            this.setState({doors: data.doors});
-        });
+        this.props.fetchDoors();
     }
 
     accessDoor = (door) => {
-        console.log(door);
         const {id: doorId, isOpen} = door;
         if(isOpen) {
             this.setState({
@@ -37,7 +28,7 @@ export default class AccessDoors extends React.Component {
     }
 
     render() {
-        const {doors} = this.state;
+        const {doors} = this.props;
         return (
             <div className="access-doors-wrap">
                 <h1>Access Doors</h1>

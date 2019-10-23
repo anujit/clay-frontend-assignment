@@ -6,22 +6,13 @@ export default class Resources extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
-            doors: [],
             showNewUserForm: false
         }
     }
 
     componentDidMount() {
-        resourcesApi.fetchUsers()
-        .then((data) => {
-            this.setState({users: data.users});
-        });
-
-        resourcesApi.fetchDoors()
-        .then((data) => {
-            this.setState({doors: data.doors});
-        });
+        this.props.fetchUsers();
+        this.props.fetchDoors();
     }
 
     addNewUser = () => {
@@ -49,7 +40,8 @@ export default class Resources extends React.Component {
     }
 
     render() {
-        const {doors, users, showNewUserForm} = this.state;
+        const {showNewUserForm} = this.state;
+        const {users, doors} = this.props;
         return (
             <div className="resources-wrap">
                 <section className="manage-people-wrap">

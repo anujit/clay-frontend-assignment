@@ -5,21 +5,33 @@ export default class ResourcesApi {
         this.axiosInstance = axiosInstance;
     }
 
-    fetchUsers = async () => {
-        const fetchUsersURI = `/people`;
-        const res = await this.axiosInstance.get(fetchUsersURI);
-        return {
-            users: res.data
-        };
+    fetchUsers = () => {
+        return (dispatch) => {
+            const fetchUsersURI = `/people`;
+            this.axiosInstance.get(fetchUsersURI)
+                .then((res) => {
+                    const users = res.data;
+                    dispatch({
+                        type: 'FETCH_PEOPLE_SUCCESS',
+                        payload: users
+                    });
+                });
+        }
     }
 
-    fetchDoors = async () => {
-        const fetchDoorsURI = `/doors`;
-        const res = await this.axiosInstance.get(fetchDoorsURI);
-        return {
-            doors: res.data
-        };
-    }    
+    fetchDoors = () => {
+        return (dispatch) => {
+            const fetchDoorsURI = `/doors`;
+            this.axiosInstance.get(fetchDoorsURI)
+            .then((res) => {
+                const doors = res.data;
+                dispatch({
+                    type: 'FETCH_DOORS_SUCCESS',
+                    payload: doors
+                })
+            });
+        }
+    }  
 }
 
 const resourcesApi = new ResourcesApi();
