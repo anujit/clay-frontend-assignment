@@ -1,11 +1,11 @@
-const people = (state = [], action) => {
+const people = (state = {role: 'admin'}, action) => {
     const {type, payload} = action;
     switch(type) {
-        case 'ADD_PEOPLE':
-            return [
+        case 'LOGIN_SUCCESS':
+            return {
                 ...state,
                 ...payload
-            ]
+            }
         default:
             return state;
     }

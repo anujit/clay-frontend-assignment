@@ -24,12 +24,14 @@ export default class Resources extends React.Component {
 
     submitNewUser = () => {
         const {newUserName: user, newUserRole: role} = this.state;
-        resourcesApi.submitUser({
-            user,
+        this.props.addNewUser({
+            name: user,
             role
-        })
-        .then(({user,role}) => {
-            //push to state
+        });
+        this.setState({
+            showNewUserForm: false,
+            newUserName: '',
+            newUserRole: ''
         });
     }
 
@@ -38,6 +40,20 @@ export default class Resources extends React.Component {
             newUserName: e.target.value
         })
     }
+
+    handleRoleChange = (e) => {
+        this.setState({
+            newUserRole: e.target.value
+        })
+    }
+
+    deleteUser = (user) => {
+        this.props.deleteUser(user);
+    }
+
+    deleteDoor = (door) => {
+        this.props.deleteDoor(door);
+    }    
 
     render() {
         const {showNewUserForm} = this.state;
@@ -57,8 +73,7 @@ export default class Resources extends React.Component {
                                         <p>
                                             Role : {user.role}
                                         </p>
-                                        <button>Edit</button>
-                                        <button>Remove</button>
+                                        <button onClick={() => {this.deleteUser(user)}}>Remove</button>
                                     </div>
                                 );
                             })
@@ -75,7 +90,7 @@ export default class Resources extends React.Component {
                                     <input type="text" onChange={this.handleNameChange} className="form-control" id="new-user-name" />
                                     <label htmlFor="new-role-name">Role</label>
                                     <input type="text" onChange={this.handleRoleChange} className="form-control" id="new-role-name" />
-                                    <button onClick={this.submitNewUser}>Submit</button>
+                                    <button type="button" onClick={this.submitNewUser}>Submit</button>
                                 </div>
                             </form>
                         }
@@ -94,8 +109,7 @@ export default class Resources extends React.Component {
                                         <p>
                                             {door.description}
                                         </p>
-                                        <button>Edit</button>
-                                        <button>Remove</button>                                        
+                                        <button type="button" onClick={() => this.deleteDoor(door)}>Remove</button>                                        
                                     </div>
                                 );
                             })
