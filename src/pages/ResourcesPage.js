@@ -1,13 +1,13 @@
 import React from 'react';
 import Resources from '../containers/ResourcesContainer';
-import IsAuthenticated from '../containers/IsAuthenticated';
+import IsAuthorised from '../containers/IsAuthorised';
 
 export default class ManageResourcesPage extends React.Component {
     render() {
         return (
-            <IsAuthenticated action="visit:manage-resources">
+            <IsAuthorised action="visit:manage-resources">
                 <Resources type="manage-resources" />
-            </IsAuthenticated>
+            </IsAuthorised>
         )
     }
 }

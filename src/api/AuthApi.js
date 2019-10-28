@@ -1,6 +1,6 @@
 import axiosInstance from './BaseApi';
 
-export default class ResourcesApi {
+export default class AuthApi {
     constructor() {
         this.axiosInstance = axiosInstance;
     }
@@ -35,5 +35,5 @@ export default class ResourcesApi {
     }    
 }
 
-const resourcesApi = new ResourcesApi();
-export {resourcesApi};
+const authApi = new AuthApi();
+export {authApi};

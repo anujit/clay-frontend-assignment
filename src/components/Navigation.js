@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import IsAuthenticated from '../containers/IsAuthenticated';
+import IsAuthorised from '../containers/IsAuthorised';
 
 export default function Navigation() {
     return (
@@ -12,16 +12,16 @@ export default function Navigation() {
                 <li>
                     <Link to="/access-doors">Open Doors</Link>
                 </li>
-                <IsAuthenticated action="visit:manage-access" checkAuthorisation={true}>
+                <IsAuthorised action="visit:manage-access" checkAuthorisation={true}>
                     <li>                        
                         <Link to="/manage-access">Manage Access</Link>
                     </li>
-                </IsAuthenticated>
-                <IsAuthenticated action="visit:manage-resources" checkAuthorisation={true}>
+                </IsAuthorised>
+                <IsAuthorised action="visit:manage-resources" checkAuthorisation={true}>
                     <li>                        
                         <Link to="/manage-resources">Manage Resources</Link>
                     </li>
-                </IsAuthenticated>
+                </IsAuthorised>
             </ul>
         </nav>
     )

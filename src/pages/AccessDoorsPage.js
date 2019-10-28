@@ -1,13 +1,13 @@
 import React from 'react';
 import Resources from '../containers/ResourcesContainer';
-import IsAuthenticated from '../containers/IsAuthenticated';
+import IsAuthorised from '../containers/IsAuthorised';
 
 export default class AccessDoorsPage extends React.Component {
     render() {
         return (
-            <IsAuthenticated action="visit:access-doors">
+            <IsAuthorised action="visit:access-doors">
                 <Resources type="open-doors" />
-            </IsAuthenticated>
+            </IsAuthorised>
         )
     }
 }
