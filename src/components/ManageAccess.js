@@ -59,7 +59,6 @@ export default class Resources extends React.Component {
                                                }) 
                                             }
                                         </div>
-                                        <button>Modify Access</button>
                                     </div>
                                 );
                             })
