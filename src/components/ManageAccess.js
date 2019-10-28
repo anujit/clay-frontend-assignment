@@ -1,6 +1,4 @@
 import React from 'react';
-import {manageAccessApi} from '../api/ManageAccessApi';
-import {resourcesApi} from '../api/ResourcesApi';
 
 export default class Resources extends React.Component {
 
@@ -18,35 +16,13 @@ export default class Resources extends React.Component {
     }
 
     modifyPermission = (user, door, isAllowed) => {
-        const {id} = user;
         const toAdd = !isAllowed;
-        
-        this.setState((prevState) => {
-            const userToModify = prevState.users.filter(user => user.id === id);
-            userToModify[0].canOpenDoors = [...userToModify[0].canOpenDoors, door.id];
-            
-            const index = prevState.users.findIndex(user => user.id === id);
-            if(toAdd) {
-                return {
-                    users: [
-                        ...prevState.users.slice(0, index),
-                        {...prevState.users[index], userToModify},
-                        ...prevState.users.slice(index+1)
-                    ]
-                }                    
-            } else {
-                return {
-                    users: [
-                        ...prevState.users.slice(0, index),
-                        ...prevState.users.slice(index+1)
-                    ]
-                }
-            }
-        })
+        const {modifyPermission} = this.props;
+        modifyPermission({userId: user.id, doorId: door.id, toAdd});
     }
 
     render() {
-        const {users, doors} = this.props;
+        const {users, doors=[]} = this.props;
         return (
             <div className="resources-wrap">
                 <section className="manage-people-wrap">

@@ -1,3 +1,34 @@
+const _modifyPermissionSuccess = (prevState, payload) => {
+    const {userId, doorId, toAdd} = payload;
+
+    const userToModify = prevState.users.find(user => user.id === userId);
+    const index = prevState.users.findIndex(user => user.id === userId);
+    const doorIndex = userToModify.canOpenDoors.indexOf(doorId);
+
+    if(toAdd) {
+        return [
+            ...prevState.users.slice(0, index),
+            {
+                ...userToModify, 
+                canOpenDoors: [
+                    ...userToModify.canOpenDoors, 
+                    doorId       
+                ]
+            },
+            ...prevState.users.slice(index+1)
+        ];
+    } else {
+        return [
+                ...prevState.users.slice(0, index),
+                {
+                    ...userToModify, 
+                    canOpenDoors: userToModify.canOpenDoors.filter(id => id != doorId)
+                },
+                ...prevState.users.slice(index+1)
+        ];
+    }
+}
+
 const user = (state = {users: [], doors: []}, action) => {
     const {type, payload} = action;
     switch (type) {
@@ -26,8 +57,25 @@ const user = (state = {users: [], doors: []}, action) => {
                 ...state,
                 doors: state.doors.filter(door => door !== payload)
             }            
-        case 'OPEN_DOORS_SUCCESS':
+        case 'ACCESS_DOORS_SUCCESS':
+            const door = state.doors.find(door => door.id === payload.doorId);
+            const doorIndex = state.doors.indexOf(door);
+            return {
+                ...state,
+                doors: [
+                    ...state.doors.slice(0, doorIndex),
+                    {
+                        ...door,
+                        isOpen: payload.isOpen
+                    },
+                    ...state.doors.slice(doorIndex + 1),                    
+                ]
+            }
         case 'MODIFY_PERMISSION_SUCCESS':
+            return {
+                ...state,
+                users: _modifyPermissionSuccess(state, payload)
+            }
         default:
             return state;
     }

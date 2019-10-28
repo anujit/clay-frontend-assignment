@@ -15,16 +15,16 @@ export const mock = new MockAdapter(axiosInstance);
  */
 const people = [
     {
-    "id": "people-1",
-    "name": "Anujit",
-    "role": "admin",
-    "canOpenDoors":["door-1","door-2"]
+        "id": "people-1",
+        "name": "Anujit",
+        "role": "admin",
+        "canOpenDoors":["door-1","door-2"]
     },
     {
-    "id": "people-2",
-    "name": "Nene",
-    "role": "user",
-    "canOpenDoors":["door-2"]
+        "id": "people-2",
+        "name": "Nene",
+        "role": "user",
+        "canOpenDoors":["door-2"]
     }
 ];
 
@@ -91,23 +91,11 @@ mock.onDelete()
 mock.onPatch()
     .reply((config) => {
         const {url, headers} = config;
+        console.log(config);
         const token = headers['X-Secret-Token'];        
         // admin flows
         if (token === 'admin-secret-token') {
-            console.log('ssdsd', config);
-            // if(url === 'http://localhost:3000/people') {
-            //     console.log('Mock request --- ', config.url, 'Mock response --- ', people);      
-            //     return [200, people];                
-            // }
-
-            // if(url === 'http://localhost:3000/doors') {
-            //     console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
-            //     return [200, doors];
-            // }
-        } else if (token === 'user-1-secret-token') {
-
-        } else {
-            return [500, {}];
+            return [200,{}]
         }
 });
 

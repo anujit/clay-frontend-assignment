@@ -5,6 +5,10 @@ import {resourcesApi} from '../api/ResourcesApi';
 import Resources from '../components/Resources';
 import ManageAccess from '../components/ManageAccess';
 import AccessDoors from '../components/AccessDoors';
+import { manageAccessApi } from '../api/ManageAccessApi';
+
+const {fetchUsers, fetchDoors, addNewUser, deleteUser, deleteDoor} = resourcesApi;
+const {modifyPermission, accessDoor} = manageAccessApi;
 
 const Wrapper = ({type, ...props}) => {
     if (type === 'manage-resources') return <Resources {...props} />;
@@ -25,11 +29,13 @@ export const mapStateToProps = (state, ownProps) => {
 }
 
 export const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchUsers: resourcesApi.fetchUsers,
-    fetchDoors: resourcesApi.fetchDoors,
-    addNewUser: resourcesApi.addNewUser,
-    deleteUser: resourcesApi.deleteUser,
-    deleteDoor: resourcesApi.deleteDoor
+    fetchUsers,
+    fetchDoors,
+    addNewUser,
+    deleteUser,
+    deleteDoor,
+    modifyPermission,
+    accessDoor
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);

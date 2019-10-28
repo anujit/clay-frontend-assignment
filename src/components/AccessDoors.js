@@ -1,5 +1,4 @@
 import React from 'react';
-import {resourcesApi} from '../api/ResourcesApi';
 import {manageAccessApi} from '../api/ManageAccessApi';
 
 export default class AccessDoors extends React.Component {
@@ -14,16 +13,14 @@ export default class AccessDoors extends React.Component {
 
     accessDoor = (door) => {
         const {id: doorId, isOpen} = door;
+        const {accessDoor} = this.props;
         if(isOpen) {
             this.setState({
                 doorOpenMessage: 'Door is already open'
             });
         } else {
             // make a post call to access the door..
-            accessPermissionsApi.accessDoor({doorId, isOpen: !door.isOpen})
-            .then((data) => {
-                console.log(data);
-            });
+            accessDoor({doorId, isOpen: !door.isOpen});
         }
     }
 

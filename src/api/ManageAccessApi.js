@@ -5,16 +5,30 @@ export default class ManageAccessApi {
         this.axiosInstance = axiosInstance;
     }
 
-    accessDoor = async ({doorId: id, isOpen}) => {
-        const doorURI = `/doors/${id}`;
-        const res = await this.axiosInstance.patch(doorURI, {isOpen});
-        return res.data;
+    accessDoor = ({doorId, isOpen}) => {
+        return (dispatch) => {
+            const doorURI = `/doors/${doorId}`;
+            this.axiosInstance.patch(doorURI, {doorId, isOpen})
+                .then(() => {
+                    dispatch({
+                        type: 'ACCESS_DOORS_SUCCESS',
+                        payload: {doorId, isOpen}
+                    });
+                });
+        }        
     }
 
-    modifyPermission = async ({doorId: id, canOpenDoors}) => {
-        const doorURI = `/people/${id}`;
-        const res = await this.axiosInstance.patch(doorURI, {canOpenDoors});
-        return res.data;
+    modifyPermission = ({userId, doorId, toAdd}) => {
+        return (dispatch) => {
+            const peopleURI = `/people/${userId}`;
+            this.axiosInstance.patch(peopleURI, {doorId, toAdd})
+                .then(() => {
+                    dispatch({
+                        type: 'MODIFY_PERMISSION_SUCCESS',
+                        payload: {userId, doorId, toAdd}
+                    });
+                });
+        }
     }
 }
 

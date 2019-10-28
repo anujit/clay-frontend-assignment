@@ -12,12 +12,12 @@ export default function Navigation() {
                 <li>
                     <Link to="/access-doors">Open Doors</Link>
                 </li>
-                <IsAuthenticated checkAuthorisation={true}>
+                <IsAuthenticated action="visit:manage-access" checkAuthorisation={true}>
                     <li>                        
                         <Link to="/manage-access">Manage Access</Link>
                     </li>
                 </IsAuthenticated>
-                <IsAuthenticated checkAuthorisation={true}>
+                <IsAuthenticated action="visit:manage-resources" checkAuthorisation={true}>
                     <li>                        
                         <Link to="/manage-resources">Manage Resources</Link>
                     </li>
