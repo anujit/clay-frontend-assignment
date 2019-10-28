@@ -99,6 +99,19 @@ mock.onPatch()
         }
 });
 
+mock.onPost()
+    .reply((config) => {
+        const {url, headers, data} = config;
+        console.log(config);
+        const token = headers['X-Secret-Token'];        
+        // admin flows
+        if (token === 'admin-secret-token') {
+            if(url === 'http://localhost:3000/people') {
+                return [200, {...JSON.parse(data), id: Math.random()}]
+            }
+        }
+});
+
 
 axiosInstance.interceptors.request.use(request => requestHandler(request));
 export default axiosInstance;

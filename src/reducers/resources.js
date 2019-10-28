@@ -3,7 +3,6 @@ const _modifyPermissionSuccess = (prevState, payload) => {
 
     const userToModify = prevState.users.find(user => user.id === userId);
     const index = prevState.users.findIndex(user => user.id === userId);
-    const doorIndex = userToModify.canOpenDoors.indexOf(doorId);
 
     if(toAdd) {
         return [

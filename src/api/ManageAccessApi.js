@@ -5,10 +5,10 @@ export default class ManageAccessApi {
         this.axiosInstance = axiosInstance;
     }
 
-    accessDoor = ({doorId, isOpen}) => {
+    accessDoor = ({doorId, userId, isOpen}) => {
         return (dispatch) => {
-            const doorURI = `/doors/${doorId}`;
-            this.axiosInstance.patch(doorURI, {doorId, isOpen})
+            const doorURI = `/openDoors`;
+            this.axiosInstance.post(doorURI, {doorId, userId, isOpen})
                 .then(() => {
                     dispatch({
                         type: 'ACCESS_DOORS_SUCCESS',
