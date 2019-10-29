@@ -5,15 +5,26 @@ export default class ManageAccessApi {
         this.axiosInstance = axiosInstance;
     }
 
-    accessDoor = ({doorId, userId, isOpen}) => {
+    accessDoor = ({doorId, userId}) => {
         return (dispatch) => {
             const doorURI = `/openDoors`;
-            this.axiosInstance.post(doorURI, {doorId, userId, isOpen})
+            this.axiosInstance.post(doorURI, {doorId, userId})
                 .then(() => {
                     dispatch({
                         type: 'ACCESS_DOORS_SUCCESS',
-                        payload: {doorId, isOpen}
+                        payload: {doorId, status: {
+                            isError: false,
+                            message: 'Door successfully opened!!'
+                        }}
                     });
+                }, () => {
+                    dispatch({
+                        type: 'ACCESS_DOORS_FAILURE',
+                        payload: {doorId, status: {
+                            isError: true,
+                            message: 'Door failed to open'
+                        }}
+                    });                    
                 });
         }        
     }

@@ -13,14 +13,14 @@ export default class AccessDoors extends React.Component {
     accessDoor = (door) => {
         const {id: doorId, isOpen} = door;
         const {accessDoor} = this.props;
-        if(isOpen) {
-            this.setState({
-                doorOpenMessage: 'Door is already open'
-            });
-        } else {
-            // make a post call to access the door..
-            accessDoor({doorId, isOpen: !door.isOpen});
-        }
+
+        // make a post call to access the door..
+        accessDoor({doorId, isOpen: !isOpen});
+    }
+
+    getStatusMessage = (status) => {
+        const {isError, message} = status;
+        return <p className={`door-status error-${isError}`}>{message}</p>
     }
 
     render() {
@@ -41,9 +41,12 @@ export default class AccessDoors extends React.Component {
                                         {door.description}
                                     </p>
                                     {
-                                        !isOpen && <button onClick={() => this.accessDoor(door)}>
+                                        <button disabled={isOpen} onClick={() => this.accessDoor(door)}>
                                             Open Door
                                         </button>
+                                    }
+                                    {
+                                        door.status && this.getStatusMessage(door.status)
                                     }
                                 </div>
                             );
