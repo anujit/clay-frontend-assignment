@@ -1,10 +1,13 @@
 import React from 'react';
+import Box from './Box';
 export default class Resources extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            showNewUserForm: false
+            showNewUserForm: false,
+            newUserName: '',
+            newUserRole: ''            
         }
     }
 
@@ -60,19 +63,17 @@ export default class Resources extends React.Component {
             <div className="resources-wrap">
                 <section className="manage-people-wrap">
                     <h1>Manage People</h1>
-                    <div className="people-list">
+                    <div className="entity-list">
                         {
                             users.map((user) => {
                                 return (
-                                    <div className="user-box" key={user.id}>
-                                        <div className="user-name-wrap">
-                                            <h4>{user.name}</h4>
-                                        </div>
-                                        <p>
-                                            Role : {user.role}
-                                        </p>
-                                        <button onClick={() => {this.deleteUser(user)}}>Remove</button>
-                                    </div>
+                                    <Box 
+                                        key={user.id}
+                                        entityName={user.name}
+                                        entityDetailsKey="Role"
+                                        entityDetailsValue={user.role}
+                                        onDeleteEntity={this.deleteUser}
+                                    />
                                 );
                             })
                         }
@@ -96,19 +97,17 @@ export default class Resources extends React.Component {
                 </section>
                 <section className="manage-doors-wrap">
                     <h1>Manage Doors</h1>
-                    <div className="doors-list">
+                    <div className="dooentityrs-list">
                     {
                             doors.map((door) => {
                                 return (
-                                    <div className="door-box" key={door.id}>
-                                        <div className="user-name-wrap">
-                                            <h4>{door.name}</h4>
-                                        </div>
-                                        <p>
-                                            {door.description}
-                                        </p>
-                                        <button type="button" onClick={() => this.deleteDoor(door)}>Remove</button>                                        
-                                    </div>
+                                    <Box 
+                                        key={door.id}
+                                        entityName={door.name}
+                                        entityDetailsKey="Role"
+                                        entityDetailsValue={door.role}
+                                        onDeleteEntity={this.deleteDoor}
+                                    />
                                 );
                             })
                         } 
