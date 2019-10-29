@@ -67,6 +67,7 @@ mock.onGet()
 mock.onPost()
     .reply((config) => {
         const {url, headers} = config;
+        const token = headers['X-Secret-Token'];        
         console.log(config);
         if(url === 'http://localhost:3000/login') {
             const loginPayload = JSON.parse(config.data);
@@ -85,11 +86,32 @@ mock.onPost()
                     role: 'user',
                     userId: 'user-1',
                     isLoggedIn: true,
-                    apiToken: 'user-secret-token'
+                    apiToken: 'user-1-secret-token'
+                }]
+            } else if (username === 'user2') {
+                return [200, {
+                    role: 'user',
+                    userId: 'user-2',
+                    isLoggedIn: true,
+                    apiToken: 'user-2-secret-token'
+                }]
+            } else if (username === 'user3') {
+                return [200, {
+                    role: 'user',
+                    userId: 'user-3',
+                    isLoggedIn: true,
+                    apiToken: 'user-3-secret-token'
+                }]
+            } else if (username === 'user4') {
+                return [200, {
+                    role: 'user',
+                    userId: 'user-4',
+                    isLoggedIn: true,
+                    apiToken: 'user-4-secret-token'
                 }]
             }
 
-            return [500,{error: 'Wrong credentials'}];
+            return [500, {error: 'Wrong credentials'}];
         }
 
         if (url === 'http://localhost:3000/logout') {
@@ -97,11 +119,17 @@ mock.onPost()
             return [200, {}];
         }
 
-        const token = headers['X-Secret-Token'];
-
         if (token === 'admin-secret-token') {
             if(url === 'http://localhost:3000/people') {
                 return [200, {...JSON.parse(data), id: Math.random()}]
+            }
+        }
+
+        if(url === 'http://localhost:3000/openDoors') {
+            if (token === 'user-3-secret-token') {
+                return [500, {error: 'Not Authorized to open this door'}]
+            } else {
+                return [200, {}]
             }
         }
     });

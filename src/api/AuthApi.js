@@ -14,6 +14,7 @@ export default class AuthApi {
                 console.log('login successful', res.data);
                 // store the token in sessionStorage...
                 sessionStorage.setItem('secretToken', res.data.apiToken);
+                sessionStorage.setItem('userInfo', JSON.stringify(res.data));
                 dispatch({
                     type: 'LOGIN_SUCCESS',
                     payload: userInfo

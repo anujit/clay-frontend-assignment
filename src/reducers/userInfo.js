@@ -1,5 +1,3 @@
-import { Visitor } from "handlebars";
-
 const people = (state = {role: 'visitor'}, action) => {
     const {type, payload} = action;
     switch(type) {

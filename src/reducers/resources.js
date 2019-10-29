@@ -65,7 +65,8 @@ const user = (state = {users: [], doors: []}, action) => {
                     ...state.doors.slice(0, doorIndex),
                     {
                         ...door,
-                        isOpen: payload.isOpen
+                        isOpen: true,
+                        status: payload.status
                     },
                     ...state.doors.slice(doorIndex + 1),                    
                 ]

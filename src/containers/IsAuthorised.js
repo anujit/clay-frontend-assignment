@@ -35,7 +35,12 @@ const IsAuthorised = (props) => {
 }
 
 export const mapStateToProps = (state, ownProps) => {
-    const {userInfo} = state;
+    let userInfo = {};
+    if (sessionStorage.userInfo) {
+        userInfo = JSON.parse(sessionStorage.userInfo)
+    } else {
+        userInfo = state.userInfo;
+    }
     const {action} = ownProps;
     const {role} = userInfo;
     return {
