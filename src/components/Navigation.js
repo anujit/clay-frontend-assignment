@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import IsAuthorised from '../containers/IsAuthorised';
+import Logout from './Logout';
 
 export default function Navigation() {
     return (
         <nav>
             <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
                 <li>
                     <Link to="/access-doors">Open Doors</Link>
                 </li>
@@ -22,6 +20,7 @@ export default function Navigation() {
                         <Link to="/manage-resources">Manage Resources</Link>
                     </li>
                 </IsAuthorised>
+                    <li><Logout /></li>
             </ul>
         </nav>
     )

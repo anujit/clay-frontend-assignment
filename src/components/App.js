@@ -1,13 +1,11 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {LandingPage, ManageAccessPage, AccessDoorsPage, EventsPage, ResourcesPage} from '../pages';
-import Navigation from './Navigation';
 import '../styles/App.scss';
 
 const App = () => {
     return (
         <div className="main-wrap">
-            <Navigation/>
             <Switch>
                 <Route exact path="/" component={LandingPage} />
                 <Route path="/manage-resources" component={ResourcesPage} />
