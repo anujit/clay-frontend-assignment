@@ -54,14 +54,14 @@ mock.onGet()
                 console.log('Mock request --- ', config.url, 'Mock response --- ', people);      
                 return [200, people];                
             }
-
-            if(url === 'http://localhost:3000/doors') {
-                console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
-                return [200, doors];
-            }
         } else if (token === 'user-1-secret-token') {
 
         }
+        
+        if(url === 'http://localhost:3000/doors') {
+            console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
+            return [200, doors];
+        }        
     });
 
 mock.onPost()
@@ -80,8 +80,13 @@ mock.onPost()
                     apiToken: 'admin-secret-token'
                 }
                 return [200, admin];
-            } else if (username === 'user-1') {
-
+            } else if (username === 'user1') {
+                return [200, {
+                    role: 'user',
+                    userId: 'user-1',
+                    isLoggedIn: true,
+                    apiToken: 'user-secret-token'
+                }]
             }
 
             return [500,{error: 'Wrong credentials'}];
