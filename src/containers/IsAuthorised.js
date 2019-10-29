@@ -6,10 +6,12 @@ const rules = {
     'admin': [
         'visit:manage-access',
         'visit:manage-resources',
-        'visit:access-doors'
+        'visit:access-doors',
+        'visit:events'
     ],    
     'user': [
-        'visit:access-doors'
+        'visit:access-doors',
+        'visit:events'
     ],
     'visitor': []
 };

@@ -61,7 +61,12 @@ mock.onGet()
         if(url === 'http://localhost:3000/doors') {
             console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
             return [200, doors];
-        }        
+        } 
+        
+        if(url === 'http://localhost:3000/events') {
+            console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
+            return [200, []];
+        }         
     });
 
 mock.onPost()

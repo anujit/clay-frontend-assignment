@@ -20,6 +20,11 @@ export default function Navigation() {
                         <Link to="/manage-resources">Manage Resources</Link>
                     </li>
                 </IsAuthorised>
+                <IsAuthorised action="visit:events" checkAuthorisation={true}>
+                    <li>                        
+                        <Link to="/events">Events</Link>
+                    </li>
+                </IsAuthorised>                
                     <li><Logout /></li>
             </ul>
         </nav>
