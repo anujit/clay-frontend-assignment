@@ -77,6 +77,7 @@ export default class Resources extends React.Component {
                                 );
                             })
                         }
+                    </div>                        
                         {
                             users.length < 4 && 
                             <button onClick={this.addNewUser}>Add New User</button>
@@ -93,24 +94,23 @@ export default class Resources extends React.Component {
                                 </div>
                             </form>
                         }
-                    </div>
                 </section>
                 <section className="manage-doors-wrap">
                     <h1>Manage Doors</h1>
-                    <div className="dooentityrs-list">
+                    <div className="entity-list">
                     {
                             doors.map((door) => {
                                 return (
                                     <Box 
                                         key={door.id}
                                         entityName={door.name}
-                                        entityDetailsKey="Role"
-                                        entityDetailsValue={door.role}
+                                        entityDetailsKey="Description"
+                                        entityDetailsValue={door.description}
                                         onDeleteEntity={this.deleteDoor}
                                     />
                                 );
                             })
-                        } 
+                    } 
                     </div>
                 </section>
             </div>
