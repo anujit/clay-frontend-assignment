@@ -3,8 +3,10 @@ import {requestHandler} from '../interceptors';
 import ApiConfig from './ApiConfig';
 import MockAdapter from 'axios-mock-adapter';
 
+const {baseURI} = ApiConfig;
+
 const axiosInstance = axios.create({
-    baseURL: ApiConfig.baseURI
+    baseURL: baseURI
 });
 
 
@@ -50,7 +52,7 @@ mock.onGet()
 
         // admin flows
         if (token === 'admin-secret-token') {
-            if(url === 'http://localhost:3000/people') {
+            if(url === `${baseURI}/people`) {
                 console.log('Mock request --- ', config.url, 'Mock response --- ', people);      
                 return [200, people];                
             }
@@ -58,12 +60,12 @@ mock.onGet()
 
         }
         
-        if(url === 'http://localhost:3000/doors') {
+        if(url === `${baseURI}/doors`) {
             console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
             return [200, doors];
         } 
         
-        if(url === 'http://localhost:3000/events') {
+        if(url === `${baseURI}/events`) {
             console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
             return [200, []];
         }         
@@ -74,7 +76,7 @@ mock.onPost()
         const {url, headers} = config;
         const token = headers['X-Secret-Token'];        
         console.log(config);
-        if(url === 'http://localhost:3000/login') {
+        if(url === `${baseURI}/login`) {
             const loginPayload = JSON.parse(config.data);
             const {username} = loginPayload;
 
@@ -119,18 +121,18 @@ mock.onPost()
             return [500, {error: 'Wrong credentials'}];
         }
 
-        if (url === 'http://localhost:3000/logout') {
+        if (url === `${baseURI}/logout`) {
             console.log('43434');
             return [200, {}];
         }
 
         if (token === 'admin-secret-token') {
-            if(url === 'http://localhost:3000/people') {
+            if(url === `${baseURI}/people`) {
                 return [200, {...JSON.parse(data), id: Math.random()}]
             }
         }
 
-        if(url === 'http://localhost:3000/openDoors') {
+        if(url === `${baseURI}/openDoors`) {
             if (token === 'user-3-secret-token') {
                 return [500, {error: 'Not Authorized to open this door'}]
             } else {

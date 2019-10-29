@@ -71,6 +71,21 @@ const user = (state = {users: [], doors: []}, action) => {
                     ...state.doors.slice(doorIndex + 1),                    
                 ]
             }
+        case 'ACCESS_DOORS_FAILURE':
+            const failureDoor = state.doors.find(door => door.id === payload.doorId);
+            const failureDoorIndex = state.doors.indexOf(failureDoor);
+            return {
+                ...state,
+                doors: [
+                    ...state.doors.slice(0, failureDoorIndex),
+                    {
+                        ...failureDoor,
+                        isOpen: false,
+                        status: payload.status
+                    },
+                    ...state.doors.slice(failureDoorIndex + 1),                    
+                ]
+            }            
         case 'MODIFY_PERMISSION_SUCCESS':
             return {
                 ...state,
