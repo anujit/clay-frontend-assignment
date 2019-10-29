@@ -11,7 +11,6 @@ export default class AuthApi {
             this.axiosInstance.post(loginURI, payload)
             .then((res) => {
                 const userInfo = res.data;
-                console.log('login successful', res.data);
                 // store the token in sessionStorage...
                 sessionStorage.setItem('secretToken', res.data.apiToken);
                 sessionStorage.setItem('userInfo', JSON.stringify(res.data));

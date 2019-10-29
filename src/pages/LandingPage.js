@@ -6,10 +6,8 @@ import LandingPageComponent from '../components/LandingPageComponent';
 import {authApi} from '../api/AuthApi';
 
 const {login} = authApi;
-console.log('sasasa', login);
 
 const LoginWrapper = ({role, ...props}) => {
-    console.log(role);
     if (role === 'visitor') {
         return <LandingPageComponent {...props} />
     }

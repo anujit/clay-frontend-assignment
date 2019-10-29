@@ -74,8 +74,7 @@ mock.onGet()
 mock.onPost()
     .reply((config) => {
         const {url, headers} = config;
-        const token = headers['X-Secret-Token'];        
-        console.log(config);
+        const token = headers['X-Secret-Token'];
         if(url === `${baseURI}/login`) {
             const loginPayload = JSON.parse(config.data);
             const {username} = loginPayload;
@@ -122,7 +121,6 @@ mock.onPost()
         }
 
         if (url === `${baseURI}/logout`) {
-            console.log('43434');
             return [200, {}];
         }
 
@@ -154,7 +152,6 @@ mock.onDelete()
 mock.onPatch()
     .reply((config) => {
         const {url, headers} = config;
-        console.log(config);
         const token = headers['X-Secret-Token'];        
         // admin flows
         if (token === 'admin-secret-token') {
