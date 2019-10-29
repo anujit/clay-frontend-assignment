@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from './Box';
-export default class Resources extends React.Component {
+export default class ManageResources extends React.Component {
 
     constructor(props) {
         super(props);

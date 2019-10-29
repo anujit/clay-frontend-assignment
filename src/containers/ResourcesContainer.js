@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {resourcesApi} from '../api/ResourcesApi';
-import Resources from '../components/Resources';
+import Resources from '../components/ManageResources';
 import ManageAccess from '../components/ManageAccess';
 import AccessDoors from '../components/AccessDoors';
 import { manageAccessApi } from '../api/ManageAccessApi';

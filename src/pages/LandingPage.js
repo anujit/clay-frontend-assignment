@@ -2,14 +2,14 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LandingPageComponent from '../components/LandingPageComponent';
+import Login from '../components/Login';
 import {authApi} from '../api/AuthApi';
 
 const {login} = authApi;
 
 const LoginWrapper = ({role, ...props}) => {
     if (role === 'visitor') {
-        return <LandingPageComponent {...props} />
+        return <Login {...props} />
     }
 
     if (role === 'admin') {

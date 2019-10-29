@@ -1,6 +1,6 @@
 import React from 'react';
 import AccessBox from './AccessBox';
-export default class Resources extends React.Component {
+export default class ManageAccess extends React.Component {
 
     constructor(props) {
         super(props);
