@@ -49,11 +49,11 @@ mock.onGet()
     .reply((config) => {
         const {url, headers} = config;
         const token = headers['X-Secret-Token'];
+        console.log('Mock request --- ', config.url);
 
         // admin flows
         if (token === 'admin-secret-token') {
             if(url === `${baseURI}/people`) {
-                console.log('Mock request --- ', config.url, 'Mock response --- ', people);      
                 return [200, people];                
             }
         } else if (token === 'user-1-secret-token') {
@@ -61,12 +61,10 @@ mock.onGet()
         }
         
         if(url === `${baseURI}/doors`) {
-            console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
             return [200, doors];
         } 
         
         if(url === `${baseURI}/events`) {
-            console.log('Mock request --- ', config.url, 'Mock response --- ', doors);      
             return [200, []];
         }         
     });
