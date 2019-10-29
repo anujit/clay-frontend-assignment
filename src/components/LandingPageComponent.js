@@ -12,12 +12,8 @@ export default class LandingPageComponent extends Component{
 
     handleLogin = () => {
         const {username, password} = this.state;
-        authApi.login({username, password})
-        .then(() => {
-
-        }, () => {
-
-        });
+        const {initiateLogin} = this.props;        
+        initiateLogin({username, password});
     }
 
     setUsername = (e) => {

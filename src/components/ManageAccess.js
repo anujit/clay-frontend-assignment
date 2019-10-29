@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Logout from './Logout';
 export default class Resources extends React.Component {
 
     constructor(props) {
@@ -27,6 +27,7 @@ export default class Resources extends React.Component {
             <div className="resources-wrap">
                 <section className="manage-people-wrap">
                     <h1>Manage Access</h1>
+                    <Logout />
                     <div className="people-list">
                         {
                             users.map((user) => {

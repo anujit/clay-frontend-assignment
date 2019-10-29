@@ -1,5 +1,4 @@
 import React from 'react';
-import {manageAccessApi} from '../api/ManageAccessApi';
 
 export default class AccessDoors extends React.Component {
 

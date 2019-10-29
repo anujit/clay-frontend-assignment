@@ -67,13 +67,36 @@ mock.onGet()
 mock.onPost()
     .reply((config) => {
         const {url, headers} = config;
+        console.log(config);
+        if(url === 'http://localhost:3000/login') {
+            const loginPayload = JSON.parse(config.data);
+            const {username} = loginPayload;
+
+            if (username === 'admin') {
+                const admin = {
+                    role: 'admin',
+                    userId: 'admin-1',
+                    isLoggedIn: true,
+                    apiToken: 'admin-secret-token'
+                }
+                return [200, admin];
+            } else if (username === 'user-1') {
+
+            }
+
+            return [500,{error: 'Wrong credentials'}];
+        }
+
+        if (url === 'http://localhost:3000/logout') {
+            console.log('43434');
+            return [200, {}];
+        }
+
         const token = headers['X-Secret-Token'];
-        
+
         if (token === 'admin-secret-token') {
-            if (url === 'http://localhost:3000/people') {
-                console.log('post', JSON.parse(config.data));
-                const payload = JSON.parse(config.data);
-                return [200, {...payload, ...{id: 'people-3'}}];
+            if(url === 'http://localhost:3000/people') {
+                return [200, {...JSON.parse(data), id: Math.random()}]
             }
         }
     });
@@ -96,19 +119,6 @@ mock.onPatch()
         // admin flows
         if (token === 'admin-secret-token') {
             return [200,{}]
-        }
-});
-
-mock.onPost()
-    .reply((config) => {
-        const {url, headers, data} = config;
-        console.log(config);
-        const token = headers['X-Secret-Token'];        
-        // admin flows
-        if (token === 'admin-secret-token') {
-            if(url === 'http://localhost:3000/people') {
-                return [200, {...JSON.parse(data), id: Math.random()}]
-            }
         }
 });
 

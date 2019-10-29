@@ -5,14 +5,15 @@ export default class AuthApi {
         this.axiosInstance = axiosInstance;
     }
 
-    login = () => {
+    login = (payload) => {
         return (dispatch) => {
             const loginURI = `/login`;
-            this.axiosInstance.get(loginURI)
+            this.axiosInstance.post(loginURI, payload)
             .then((res) => {
                 const userInfo = res.data;
+                console.log('login successful', res.data);
                 // store the token in sessionStorage...
-
+                sessionStorage.setItem('secretToken', res.data.apiToken);
                 dispatch({
                     type: 'LOGIN_SUCCESS',
                     payload: userInfo
@@ -24,9 +25,10 @@ export default class AuthApi {
     logout = () => {
         return (dispatch) => {
             const logoutURI = `/logout`;
-            this.axiosInstance.get(logoutURI)
+            this.axiosInstance.post(logoutURI, {})
             .then(() => { 
-                // clear sessionStorage               
+                // clear sessionStorage   
+                sessionStorage.clear();            
                 dispatch({
                     type: 'LOGOUT_SUCCESS'
                 })

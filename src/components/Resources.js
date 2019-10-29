@@ -1,6 +1,4 @@
 import React from 'react';
-import {resourcesApi} from '../api/ResourcesApi';
-
 export default class Resources extends React.Component {
 
     constructor(props) {
