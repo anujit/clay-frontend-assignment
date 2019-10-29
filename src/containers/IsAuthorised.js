@@ -25,13 +25,15 @@ const verifyAuth = ({rules, role, action}) => {
 }
 
 const IsAuthorised = (props) => {
-    const {role, action, checkAuthorisation} = props;
+    const {role, action, isPrivilegedAction} = props;
     const isAuthenticated = verifyAuth({rules, role, action});
 
     if (isAuthenticated) {
         return props.children;
-    } else if(checkAuthorisation) {
+    } else if(isPrivilegedAction) {
         return null;
+    } else if(role === 'user') {
+        return <Redirect to="/access-doors" />    
     }
     return <Redirect to="/" />
 }
