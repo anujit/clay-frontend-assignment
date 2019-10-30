@@ -8,7 +8,10 @@ export default class AccessDoors extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchDoors();
+        const {fetchDoors, doors} = this.props;
+        if(doors.length === 0) {
+            fetchDoors();
+        }
     }
 
     accessDoor = (door) => {

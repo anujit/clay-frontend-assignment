@@ -13,8 +13,14 @@ export default class ManageResources extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchUsers();
-        this.props.fetchDoors();
+        const {fetchDoors, doors, users, fetchUsers} = this.props;
+        if(doors.length === 0) {
+            fetchDoors();
+        }      
+        
+        if(users.length === 0) {
+            fetchUsers();
+        }
     }
 
     addNewUser = () => {
@@ -120,17 +126,17 @@ export default class ManageResources extends React.Component {
     }
 }
 
-ManageResources.defaultProps = {
-    doors: [],
-    users: []
-}
+// ManageResources.defaultProps = {
+//     doors: [],
+//     users: []
+// }
 
-ManageResources.propTypes = {
-    fetchUsers: PropTypes.func.isRequired,
-    fetchDoors: PropTypes.func.isRequired,
-    addNewUser: PropTypes.func.isRequired,
-    deleteUser: PropTypes.func.isRequired,
-    deleteDoor: PropTypes.func.isRequired,
-    users: PropTypes.array.isRequired,
-    doors: PropTypes.array.isRequired
-}
+// ManageResources.propTypes = {
+//     fetchUsers: PropTypes.func.isRequired,
+//     fetchDoors: PropTypes.func.isRequired,
+//     addNewUser: PropTypes.func.isRequired,
+//     deleteUser: PropTypes.func.isRequired,
+//     deleteDoor: PropTypes.func.isRequired,
+//     users: PropTypes.array.isRequired,
+//     doors: PropTypes.array.isRequired
+// }

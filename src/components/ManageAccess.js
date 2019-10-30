@@ -8,8 +8,14 @@ export default class ManageAccess extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchDoors();
-        this.props.fetchUsers();
+        const {fetchDoors, doors, users, fetchUsers} = this.props;
+        if(doors.length === 0) {
+            fetchDoors();
+        }      
+        
+        if(users.length === 0) {
+            fetchUsers();
+        }
     }
 
     isPermissionAllowed = () => {
@@ -46,15 +52,15 @@ export default class ManageAccess extends React.Component {
     }
 }
 
-ManageAccess.defaultProps = {
-    doors: [],
-    users: []
-}
+// ManageAccess.defaultProps = {
+//     doors: [],
+//     users: []
+// }
 
-ManageAccess.propTypes = {
-    fetchUsers: PropTypes.func.isRequired,
-    fetchDoors: PropTypes.func.isRequired,
-    modifyPermission: PropTypes.func.isRequired,
-    users: PropTypes.array.isRequired,
-    doors: PropTypes.array.isRequired
-}
+// ManageAccess.propTypes = {
+//     fetchUsers: PropTypes.func.isRequired,
+//     fetchDoors: PropTypes.func.isRequired,
+//     modifyPermission: PropTypes.func.isRequired,
+//     users: PropTypes.array.isRequired,
+//     doors: PropTypes.array.isRequired
+// }
