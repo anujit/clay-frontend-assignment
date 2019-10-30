@@ -28,7 +28,7 @@ const _modifyPermissionSuccess = (prevState, payload) => {
     }
 }
 
-const user = (state = {users: [], doors: []}, action) => {
+const resources = (state = {users: [], doors: []}, action) => {
     const {type, payload} = action;
     switch (type) {
         case 'FETCH_PEOPLE_SUCCESS':
@@ -95,4 +95,4 @@ const user = (state = {users: [], doors: []}, action) => {
             return state;
     }
 }
-export default user;
+export default resources;
