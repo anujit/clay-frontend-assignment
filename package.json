@@ -9,8 +9,6 @@
   "scripts": {
     "start": "rimraf dist && webpack-dev-server --config ./webpack.config.js --env.env=dev --open --hot",
     "build": "rimraf dist && webpack --config ./webpack.config.js --env.env=prod",
-    "server": "json-server db.json",
-    "dev": "npm-run-all -p server start",
     "test": "jest"
   },
   "dependencies": {
