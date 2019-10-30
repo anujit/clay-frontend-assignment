@@ -8,6 +8,9 @@ export default class ResourcesApi {
     fetchUsers = () => {
         return (dispatch) => {
             const fetchUsersURI = `/people`;
+            dispatch({
+                type: 'FETCH_PEOPLE_START'
+            });        
             this.axiosInstance.get(fetchUsersURI)
                 .then((res) => {
                     const users = res.data;
@@ -21,6 +24,9 @@ export default class ResourcesApi {
 
     fetchDoors = () => {
         return (dispatch) => {
+            dispatch({
+                type: 'FETCH_DOORS_START'
+            });            
             const fetchDoorsURI = `/doors`;
             this.axiosInstance.get(fetchDoorsURI)
             .then((res) => {
@@ -35,6 +41,9 @@ export default class ResourcesApi {
 
     addNewUser = (user) => {
         return (dispatch) => {
+            dispatch({
+                type: 'ADD_NEW_USER_START'
+            }); 
             const addNewUserURI = `/people`;
             this.axiosInstance.post(addNewUserURI, user)
                 .then((res) => {
@@ -49,6 +58,9 @@ export default class ResourcesApi {
 
     deleteUser = (user) => {
         return (dispatch) => {
+            dispatch({
+                type: 'DELETE_USER_START'
+            });            
             const deleteUserURI = `/people/${user.id}`;
             this.axiosInstance.delete(deleteUserURI)
                 .then(() => {
@@ -62,6 +74,9 @@ export default class ResourcesApi {
 
     deleteDoor = (door) => {
         return (dispatch) => {
+            dispatch({
+                type: 'DELETE_DOOR_START'
+            });            
             const deleteDoorURI = `/doors/${door.id}`;
             this.axiosInstance.delete(deleteDoorURI)
                 .then(() => {

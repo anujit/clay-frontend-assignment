@@ -2,7 +2,8 @@ import axios from 'axios';
 import {requestHandler, logRequest} from '../interceptors';
 import ApiConfig from './ApiConfig';
 import MockAdapter from 'axios-mock-adapter';
-import {doors, people} from '../mocks/entity';
+import {doors, people, userEvents, adminAudit} from '../mocks';
+import {ApiConsts} from './ApiConsts';
 
 const {baseURI} = ApiConfig;
 
@@ -30,7 +31,7 @@ mock.onGet()
         } 
         
         if(url === `${baseURI}/events`) {
-            return [200, []];
+            return [200, userEvents];
         }         
     });
 
@@ -107,7 +108,7 @@ mock.onDelete()
         const {headers} = config;
         const token = headers['X-Secret-Token'];
 
-        if (token === 'admin-secret-token') {
+        if (token === ApiConsts.ADMIN_SECRET_TOKEN) {
             return [204,{}]
         }
     });
@@ -117,7 +118,7 @@ mock.onPatch()
         const {url, headers} = config;
         const token = headers['X-Secret-Token'];        
         // admin flows
-        if (token === 'admin-secret-token') {
+        if (token === ApiConsts.ADMIN_SECRET_TOKEN) {
             return [200,{}]
         }
 });
