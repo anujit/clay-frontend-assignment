@@ -6,6 +6,9 @@ This is a repo for the frontend coding assignment challenge at Clay.
 
 I have used a template called [React Kickstarter]([https://github.com/anujit/react-kickstarter](https://github.com/anujit/react-kickstarter)) which I had created earlier, taking into consideration some commonly used deps.
 
+To install dependencies -
+
+`yarn install`
 
 To run the application -
 
