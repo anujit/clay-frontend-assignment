@@ -39,9 +39,8 @@ export default class Login extends Component{
                         <div className="col-md-10 mx-auto">
                             <form className="login-wrap">
                                 <div className="form-group">
-                                    <label htmlFor="access-username">Enter Username:</label>
-                                    <input type="text" onChange={this.setUsername} value={username} id="access-username" />
-                                    <button disabled={!username} className="btn btn-primary" type="button" onClick={this.handleLogin}>
+                                    <input type="text" onChange={this.setUsername} value={username} placeholder="Enter a username" id="access-username" />
+                                    <button disabled={!username} className="ml-3 btn btn-primary" type="button" onClick={this.handleLogin}>
                                         Continue
                                     </button>
                                 </div>
