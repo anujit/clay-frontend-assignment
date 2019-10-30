@@ -11,7 +11,7 @@ export class LogoutComponent extends Component {
     }
 
     render () {
-        return <button type="button" onClick={this.initiateLogout}>Logout</button>
+        return <button className="btn btn-danger" type="button" onClick={this.initiateLogout}>Logout</button>
     }
 }
 

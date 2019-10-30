@@ -1,0 +1,24 @@
+.entity-box, .door-box {
+    display: flex;
+    flex-flow: row wrap;
+    box-shadow: 2px 6px 8px 0 rgba(46, 53, 61, 0.16);
+    border-radius: .5rem;
+    padding: 1rem;
+    transition: box-shadow 0.5s;
+    &:hover {
+      color:rgb(6, 6, 153);
+      cursor: default;
+      box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+    };
+    h3 {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 800px) {
+    .entity-box, .door-box {
+      flex: 0 0 33.33%;
+      margin: .5rem 1rem 0 0;
+    }
+  }

@@ -33,17 +33,23 @@ export default class Login extends Component{
     render() {
         const {username, password} = this.state;
         return (
-            <div className="resources-wrap">
-                <section className="login-wrap">
-                    <label htmlFor="access-username">Username</label>
-                    <input type="text" onChange={this.setUsername} value={username} id="access-username" />
-                    <label htmlFor="access-username">Password</label>
-                    <input type="password" onChange={this.setPassword} value={password} id="access-password" />
-                    <button type="button" onClick={this.handleLogin}>
-                        Login
-                    </button>
-                </section>
-            </div>
+            <header className="masthead">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-10 mx-auto">
+                            <form className="login-wrap">
+                                <div className="form-group">
+                                    <label htmlFor="access-username">Enter Username:</label>
+                                    <input type="text" onChange={this.setUsername} value={username} id="access-username" />
+                                    <button disabled={!username} className="btn btn-primary" type="button" onClick={this.handleLogin}>
+                                        Continue
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
         );
     }
 }

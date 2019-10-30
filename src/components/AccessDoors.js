@@ -21,7 +21,12 @@ export default class AccessDoors extends React.Component {
 
     getStatusMessage = (status) => {
         const {isError, message} = status;
-        return <p className={`door-status error-${isError}`}>{message}</p>
+        const statusClass = isError ? 'alert-danger' : 'alert-success';
+        return (
+            <div className={`mt-3 door-status alert ${statusClass}`}>
+                {message}
+            </div>
+        );
     }
 
     render() {
@@ -29,7 +34,7 @@ export default class AccessDoors extends React.Component {
         return (
             <div className="access-doors-wrap">
                 <h1>Access Doors</h1>
-                <div className="doors-list">
+                <div className="doors-list mt-3">
                     {
                         doors.map((door) => {
                             const {isOpen} = door;
@@ -37,18 +42,18 @@ export default class AccessDoors extends React.Component {
                                 <div className="door-box" key={door.id}>
                                     <div className="door-wrap">
                                         <h4>{door.name}</h4>
+                                        <p>
+                                            {door.description}
+                                        </p>
+                                        {
+                                            <button type="button" className="btn btn-success" disabled={isOpen} onClick={() => this.accessDoor(door)}>
+                                                Open Door
+                                            </button>
+                                        }
+                                        {
+                                            door.status && this.getStatusMessage(door.status)
+                                        }                                        
                                     </div>
-                                    <p>
-                                        {door.description}
-                                    </p>
-                                    {
-                                        <button disabled={isOpen} onClick={() => this.accessDoor(door)}>
-                                            Open Door
-                                        </button>
-                                    }
-                                    {
-                                        door.status && this.getStatusMessage(door.status)
-                                    }
                                 </div>
                             );
                         })

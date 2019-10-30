@@ -1,8 +1,29 @@
+body {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
 .main-wrap {
     width:80%;
     margin: 0 auto;
 }
 
-p {
+p, h1, h3, h4, div{
     margin: 0;
+}
+
+a {
+    text-decoration-line: none;
+    padding: .5rem 1rem;
+}
+
+.entity-list, .doors-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.new-user-form {
+    border: 1px dotted grey;
+    padding: 1rem;
 }

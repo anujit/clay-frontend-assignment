@@ -5,7 +5,7 @@ const AccessBox = ({doors, user, modifyPermission}) => {
     return (
         <div className="access-box" key={user.id}>
             <div className="user-name-wrap">
-                <h4>{user.id}</h4>
+                <h4>{user.name}</h4>
             </div>
             <div>
                 Access to doors:

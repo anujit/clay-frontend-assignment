@@ -27,7 +27,7 @@ export default class ManageAccess extends React.Component {
         return (
             <div className="manage-access-wrap">
                 <h1>Manage Access</h1>
-                <div className="people-list">
+                <div className="people-list mt-3">
                     {
                         users.map((user) => {
                             return (

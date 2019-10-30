@@ -1,0 +1,17 @@
+nav {
+    font-weight: 700;
+    
+    ul {
+      list-style: none;
+      display: flex;
+      flex-flow: row wrap;
+      padding: 1rem 1rem;
+      margin: 0 auto;
+      width: 80%;
+      li{
+        list-style: none;
+        margin-right: .5rem;
+        text-transform: uppercase;
+      }
+    }
+  }

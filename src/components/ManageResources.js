@@ -58,18 +58,19 @@ export default class ManageResources extends React.Component {
     }    
 
     render() {
-        const {showNewUserForm} = this.state;
+        const {showNewUserForm, newUserName, newUserRole} = this.state;
         const {users, doors} = this.props;
         return (
             <div className="resources-wrap">
-                <section className="manage-people-wrap">
+                <section className="manage-people-wrap mb-5">
                     <h1>Manage People</h1>
-                    <div className="entity-list">
+                    <div className="entity-list row mt-3">
                         {
                             users.map((user) => {
                                 return (
                                     <Box 
                                         key={user.id}
+                                        entity={user}
                                         entityName={user.name}
                                         entityDetailsKey="Role"
                                         entityDetailsValue={user.role}
@@ -81,17 +82,17 @@ export default class ManageResources extends React.Component {
                     </div>                        
                         {
                             users.length < 4 && 
-                            <button onClick={this.addNewUser}>Add New User</button>
+                            <button className="btn btn-primary mt-5 mb-5" onClick={this.addNewUser}>Add New User</button>
                         }
                         {
                             showNewUserForm && 
-                            <form>
+                            <form className="new-user-form">
                                 <div className="form-group">
                                     <label htmlFor="new-user-name">Name</label>
-                                    <input type="text" onChange={this.handleNameChange} className="form-control" id="new-user-name" />
+                                    <input type="text" className="form-control" onChange={this.handleNameChange} className="form-control" id="new-user-name" />
                                     <label htmlFor="new-role-name">Role</label>
-                                    <input type="text" onChange={this.handleRoleChange} className="form-control" id="new-role-name" />
-                                    <button type="button" onClick={this.submitNewUser}>Submit</button>
+                                    <input type="text" className="form-control" onChange={this.handleRoleChange} className="form-control" id="new-role-name" />
+                                    <button disabled={!newUserName || !newUserRole} className=" mt-5 btn btn-primary" type="button" onClick={this.submitNewUser}>Submit</button>
                                 </div>
                             </form>
                         }
