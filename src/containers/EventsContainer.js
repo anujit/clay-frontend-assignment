@@ -7,9 +7,11 @@ import Events from '../components/Events';
 const {fetchEvents} = eventsApi;
 
 export const mapStateToProps = (state) => {
-    const {events} = state;
+    const {events, userInfo} = state;
+    const {userId} = userInfo;
     return {
-        events
+        events,
+        userId
     }
 }
 
