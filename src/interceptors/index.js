@@ -3,4 +3,9 @@ const requestHandler = (request) => {
     return request;
 }
 
-export {requestHandler};
+const logRequest = (request) => {
+    console.log('Starting Request...', request)
+    return request
+}
+
+export {requestHandler, logRequest};

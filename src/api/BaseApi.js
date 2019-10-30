@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {requestHandler} from '../interceptors';
+import {requestHandler, logRequest} from '../interceptors';
 import ApiConfig from './ApiConfig';
 import MockAdapter from 'axios-mock-adapter';
 import {doors, people} from '../mocks/entity';
@@ -17,7 +17,6 @@ mock.onGet()
     .reply((config) => {
         const {url, headers} = config;
         const token = headers['X-Secret-Token'];
-        console.log('Mock request --- ', config.url);
 
         // admin flows
         if (token === 'admin-secret-token') {
@@ -90,7 +89,7 @@ mock.onPost()
 
         if (token === 'admin-secret-token') {
             if(url === `${baseURI}/people`) {
-                return [200, {...JSON.parse(data), id: Math.random()}]
+                return [200, {...JSON.parse(config.data), id: Math.random()}]
             }
         }
 
@@ -125,4 +124,5 @@ mock.onPatch()
 
 
 axiosInstance.interceptors.request.use(request => requestHandler(request));
+axiosInstance.interceptors.request.use(request => logRequest(request));
 export default axiosInstance;
