@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Box.scss';
 
 const Box = ({entityName, entityDetailsValue, entityDetailsKey, onDeleteEntity}) => {
     return (

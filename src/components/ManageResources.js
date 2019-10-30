@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from './Box';
+import Box from '../templates/Box';
 export default class ManageResources extends React.Component {
 
     constructor(props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import AccessBox from './AccessBox';
+import AccessBox from '../templates/AccessBox';
 export default class ManageAccess extends React.Component {
 
     constructor(props) {
