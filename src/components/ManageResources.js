@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '../templates/Box';
+import PropTypes from 'prop-types';
 export default class ManageResources extends React.Component {
 
     constructor(props) {
@@ -118,3 +119,17 @@ export default class ManageResources extends React.Component {
     }
 }
 
+ManageResources.defaultProps = {
+    doors: [],
+    users: []
+}
+
+ManageResources.propTypes = {
+    fetchUsers: PropTypes.func.isRequired,
+    fetchDoors: PropTypes.func.isRequired,
+    addNewUser: PropTypes.func.isRequired,
+    deleteUser: PropTypes.func.isRequired,
+    deleteDoor: PropTypes.func.isRequired,
+    users: PropTypes.array.isRequired,
+    doors: PropTypes.array.isRequired
+}

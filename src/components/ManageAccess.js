@@ -1,5 +1,6 @@
 import React from 'react';
 import AccessBox from '../templates/AccessBox';
+import PropTypes from 'prop-types';
 export default class ManageAccess extends React.Component {
 
     constructor(props) {
@@ -45,3 +46,15 @@ export default class ManageAccess extends React.Component {
     }
 }
 
+ManageAccess.defaultProps = {
+    doors: [],
+    users: []
+}
+
+ManageAccess.propTypes = {
+    fetchUsers: PropTypes.func.isRequired,
+    fetchDoors: PropTypes.func.isRequired,
+    modifyPermission: PropTypes.func.isRequired,
+    users: PropTypes.array.isRequired,
+    doors: PropTypes.array.isRequired
+}

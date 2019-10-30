@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class AccessDoors extends React.Component {
 
@@ -58,3 +59,12 @@ export default class AccessDoors extends React.Component {
     }
 }
 
+AccessDoors.defaultProps = {
+    doors: []
+}
+
+AccessDoors.propTypes = {
+    doors: PropTypes.array.isRequired,
+    accessDoor: PropTypes.func.isRequired,
+    fetchDoors: PropTypes.func.isRequired
+}
