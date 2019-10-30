@@ -2,10 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import ManageResources from '../components/ManageResources';
 import ManageAccess from '../components/ManageAccess';
-import {people, doors} from '../mocks/entity';
-import {createStore, applyMiddleware} from 'redux';
-import resources from '../reducers/resources';
-import thunk from 'redux-thunk';
+import {people, doors} from '../mocks';
 import '@testing-library/jest-dom/extend-expect'
 
 jest.mock('../api/ResourcesApi');
@@ -62,5 +59,5 @@ test('Test Manage Access', async () => {
 
     expect(fetchUsersMock).toHaveBeenCalledTimes(1);
     expect(resourcesApi.fetchUsers).toHaveBeenCalledTimes(1);
-    people.forEach(user => expect(getByText(user.id)).toBeInTheDocument());      
+    people.forEach(user => expect(getByText(user.name)).toBeInTheDocument());      
 })
